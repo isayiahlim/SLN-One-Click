@@ -1,6 +1,6 @@
-
 document.addEventListener('DOMContentLoaded', () => {
   const button = document.getElementById('printBtn');
+  const openButton = document.getElementById('openBtn');
   const outputDiv = document.getElementById('output');
 
   button.addEventListener('click', async () => {
@@ -28,5 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
       outputDiv.textContent = "Error: " + error.message;
       outputDiv.style.display = 'block';
     }
+  });
+
+  // New logic to open a tab
+  openButton.addEventListener('click', () => {
+    chrome.tabs.create({ url: 'https://www.google.com' });
   });
 });
