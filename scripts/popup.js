@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const timeSpan = document.createElement('span');
         timeSpan.className = 'url-time';
-        timeSpan.textContent = bookmark.time ? ` Opens at ${bookmark.time}` : 'Manual only';
+        timeSpan.textContent = bookmark.time ? ` Opens at ${bookmark.time}` : ' Manual only';
 
         infoDiv.appendChild(nameSpan);
         infoDiv.appendChild(timeSpan);
