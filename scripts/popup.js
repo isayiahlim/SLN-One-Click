@@ -1,14 +1,14 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const nameInput = document.getElementById('nameInput');
-  const timeInput = document.getElementById('timeInput');
-  const saveBtn = document.getElementById('saveBtn');
-  const urlList = document.getElementById('urlList');
-  const printBtn = document.getElementById('printBtn');
-  const outputDiv = document.getElementById('output');
+document.addEventListener("DOMContentLoaded", () => {
+  const nameInput = document.getElementById("nameInput");
+  const timeInput = document.getElementById("timeInput");
+  const saveBtn = document.getElementById("saveBtn");
+  const urlList = document.getElementById("urlList");
+  const printBtn = document.getElementById("printBtn");
+  const outputDiv = document.getElementById("output");
 
   loadBookmarks();
 
-  saveBtn.addEventListener('click', async () => {
+  saveBtn.addEventListener("click", async () => {
     const name = nameInput.value.trim();
     const time = timeInput.value;
 
@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
       if (tab && tab.url) {
         saveBookmark(name, tab.url, time);
-        nameInput.value = '';
-        timeInput.value = '';
+        nameInput.value = "";
+        timeInput.value = "";
       } else {
         alert("Cannot access current tab URL.");
       }
@@ -31,24 +31,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  printBtn.addEventListener('click', async () => {
+  printBtn.addEventListener("click", async () => {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-    if(tab) {
+    if (tab) {
       outputDiv.textContent = "Current: " + tab.url;
-      outputDiv.style.display = 'block';
+      outputDiv.style.display = "block";
     }
   });
 
   function saveBookmark(name, url, timeString) {
-    chrome.storage.sync.get(['bookmarks'], (result) => {
+    chrome.storage.sync.get(["bookmarks"], (result) => {
       const bookmarks = result.bookmarks || [];
-      
+
       if (timeString) {
         scheduleAlarm(name, timeString);
       }
 
       bookmarks.push({ name, url, time: timeString });
-      
+
       chrome.storage.sync.set({ bookmarks: bookmarks }, () => {
         loadBookmarks();
       });
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function scheduleAlarm(name, timeString) {
-    const [hours, minutes] = timeString.split(':');
+    const [hours, minutes] = timeString.split(":");
     const now = new Date();
     const scheduledTime = new Date();
 
@@ -69,16 +69,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     chrome.alarms.create(name, {
-      when: scheduledTime.getTime()
+      when: scheduledTime.getTime(),
     });
-    
+
     console.log(`Alarm '${name}' set for ${scheduledTime.toString()}`);
   }
 
   function loadBookmarks() {
-    chrome.storage.sync.get(['bookmarks'], (result) => {
+    chrome.storage.sync.get(["bookmarks"], (result) => {
       const bookmarks = result.bookmarks || [];
-      urlList.innerHTML = '';
+      urlList.innerHTML = "";
 
       if (bookmarks.length === 0) {
         urlList.innerHTML = '<div style="color:#777; font-size:12px;">No saved pages yet.</div>';
@@ -86,33 +86,33 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       bookmarks.forEach((bookmark, index) => {
-        const item = document.createElement('div');
-        item.className = 'url-item';
-        
-        const infoDiv = document.createElement('div');
-        infoDiv.className = 'url-info';
+        const item = document.createElement("div");
+        item.className = "url-item";
 
-        const nameSpan = document.createElement('span');
-        nameSpan.className = 'url-name';
+        const infoDiv = document.createElement("div");
+        infoDiv.className = "url-info";
+
+        const nameSpan = document.createElement("span");
+        nameSpan.className = "url-name";
         nameSpan.textContent = bookmark.name;
-        
-        const timeSpan = document.createElement('span');
-        timeSpan.className = 'url-time';
-        timeSpan.textContent = bookmark.time ? ` Opens at ${bookmark.time}` : ' Manual only';
+
+        const timeSpan = document.createElement("span");
+        timeSpan.className = "url-time";
+        timeSpan.textContent = bookmark.time ? ` Opens at ${bookmark.time}` : " Manual only";
 
         infoDiv.appendChild(nameSpan);
         infoDiv.appendChild(timeSpan);
 
-        const delBtn = document.createElement('span');
-        delBtn.className = 'delete-btn';
-        delBtn.textContent = '✕';
+        const delBtn = document.createElement("span");
+        delBtn.className = "delete-btn";
+        delBtn.textContent = "X";
         delBtn.title = "Remove";
         delBtn.onclick = (e) => {
           e.stopPropagation();
           deleteBookmark(index, bookmark.name);
         };
 
-        item.addEventListener('click', () => {
+        item.addEventListener("click", () => {
           chrome.tabs.create({ url: bookmark.url });
         });
 
@@ -124,10 +124,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function deleteBookmark(index, name) {
-    chrome.storage.sync.get(['bookmarks'], (result) => {
+    chrome.storage.sync.get(["bookmarks"], (result) => {
       const bookmarks = result.bookmarks || [];
       bookmarks.splice(index, 1);
-      
+
       chrome.alarms.clear(name);
 
       chrome.storage.sync.set({ bookmarks: bookmarks }, () => {
