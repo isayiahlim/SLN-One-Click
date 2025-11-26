@@ -9,29 +9,67 @@ h3 {
   margin-top: 0;
   color: #202124;
 }
-button {
-  background-color: #1a73e8;
-  color: white;
-  border: none;
-  padding: 10px 20px;
+
+/* Input and Button Styles */
+input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 8px;
+  box-sizing: border-box;
+  border: 1px solid #dadce0;
   border-radius: 4px;
+}
+button {
+  width: 100%;
+  padding: 8px;
   cursor: pointer;
   font-size: 14px;
-  font-weight: 500;
-  transition: background-color 0.2s;
+  border-radius: 4px;
+  border: none;
+  color: white;
+  margin-bottom: 5px;
 }
-button:hover {
+.btn-primary {
+  background-color: #1a73e8;
+}
+.btn-primary:hover {
   background-color: #1557b0;
 }
-#output {
+
+.btn-success {
+  background-color: #34a853;
+}
+.btn-success:hover {
+  background-color: #2d8e47;
+}
+
+/* List Styles */
+#urlList {
   margin-top: 15px;
-  padding: 10px;
-  background-color: #f1f3f4;
-  border-radius: 4px;
-  font-family: monospace;
-  font-size: 12px;
-  color: #333;
-  word-break: break-all; /* Ensures long URLs wrap */
-  display: none; /* Hidden until button is clicked */
+  text-align: left;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+.url-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  background: #f8f9fa;
   border: 1px solid #dadce0;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.url-item:hover {
+  background: #f1f3f4;
+}
+.url-name {
+  font-weight: 500;
+}
+.delete-btn {
+  color: #d93025;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0 5px;
 }
