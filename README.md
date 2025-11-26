@@ -40,9 +40,15 @@ Every UW student knows the struggle:
 3.  **Win:** As soon as the page loads, the SLN is already in the box. Just hit "Update Schedule" (or enable auto-submit in settings).
 
 ## ⚠️ Disclaimer
-**Use responsibly.** This tool is an *autofill utility*, similar to password managers. It is not a "bot" that spams the server with requests. However, automating university registration actions can exist in a gray area of student conduct codes. 
-* **Do not** modify the code to refresh the page automatically (this is "hammering" and will get you IP banned by UW IT).
-* The developers are not responsible for any misuse of this tool.
+**Use responsibly.** This tool is an *autofill utility*, similar to password managers. It is not a "bot" that spams the server with requests. As per the registrar **[Policies and Procedures](https://registrar.washington.edu/register/policies-procedures/)**, 
+
+> the use of robots and other automated tools to submit registration requests is expressly forbidden. 
+
+This bot notably does NOT submit registration requests. A user must submit the request manually. 
+
+**Do not** modify the code to refresh the page automatically (this is "hammering" and will get you IP banned by UW IT).
+
+The developers are not responsible for any misuse of this tool.
 
 ---
 *Built by Benoit Le, Daniel Zhang, and Isayiah Lim for the Autumn 2025 Claude Builders Club Hackathon*
