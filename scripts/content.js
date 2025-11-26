@@ -18,6 +18,7 @@ function locateUpdateButton() {
     targetBtn.style.border = '3px solid #4285f4';
     targetBtn.style.boxShadow = '0 0 15px #4285f4';
     targetBtn.style.transition = 'all 0.3s';
+    targetBtn.focus();
     
     setTimeout(() => {
       targetBtn.style.border = '';
